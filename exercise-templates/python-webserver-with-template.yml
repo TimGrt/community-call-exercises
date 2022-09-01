@@ -14,7 +14,6 @@
       community.general.pids:
         pattern: .*http\.server.*
       register: python_webserver_pid
-      tags: kill
 
     # Use appropriate module to deploy template from templates-folder. Set the correct destination, look at
     # the last task were the webserver is started. The webserver expects a file named 'index.html' at the webserver root folder.
@@ -34,4 +33,3 @@
       when:
         - python_webserver_pid.pids | length > 0
         - "'kill' in ansible_run_tags"
-      tags: kill
