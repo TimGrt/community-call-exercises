@@ -2,12 +2,6 @@
 - name: Community Call Dojo - Templates
   hosts: localhost
   connection: local
-  handlers:
-    # Don't change this task, you can use it, if you find it useful
-    - name: kill_python_webserver
-      command:
-        cmd: kill {{ python_webserver_pid.pids | join(' ') }}
-      when: python_webserver_pid.pids | length > 0
   vars:
     # Use this variable in your template. For testing purposes, add more members and re-run playbook.
     attendee_list:
@@ -16,24 +10,28 @@
   tasks:
     # pids-module needs psutil Python module, can be installed via package manager: python3-psutil
     # Do this manually, so you don't have to run the playbook with become. Otherwise, leave this task
-    - name: Get process ID of Python HTTP server 
+    - name: Get process ID of Python HTTP server
       community.general.pids:
         pattern: .*http\.server.*
       register: python_webserver_pid
+      tags: kill
 
     # Use appropriate module to deploy template from templates-folder. Set the correct destination, look at
     # the last task were the webserver is started. The webserver expects a file named 'index.html' at the webserver root folder.
     # If you change the template while the webserver is running, it needs to be reloaded (or stopped and started again)!
     - name: Deploy index.html template
-    # add your code here...
-    
-    # Don't change this task
-    - name: Flush handler
-      meta: flush_handlers
+      # ADD YOUR CODE HERE...
 
     # Don't change this task unless you have to use another port for your webserver
     - name: Run Python webserver
-      shell:
+      ansible.builtin.shell:
         cmd: python3 -m http.server 8080 --directory /tmp &> /dev/null
         creates: /proc/{{ python_webserver_pid.pids | join(' ') }}/uid_map
-      
+
+    - name: Stop Python webserver
+      ansible.builtin.command:
+        cmd: kill {{ python_webserver_pid.pids | join(' ') }}
+      when:
+        - python_webserver_pid.pids | length > 0
+        - "'kill' in ansible_run_tags"
+      tags: kill
