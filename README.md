@@ -1,5 +1,7 @@
 # Community Call - Exercises
 
+[![Ansible Lint](https://github.com/TimGrt/community-call-exercises/actions/workflows/ci.yml/badge.svg)](https://github.com/TimGrt/community-call-exercises/actions/workflows/ci.yml)
+
 This repository contains different exercises for the Ansible Community Call *Dojo* Sessions.
 
 Clone this repository via HTTPS:
