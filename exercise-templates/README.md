@@ -13,6 +13,12 @@ sudo apt install python3-psutil
 
 This command expects to run on a debian-based system with Python3. You may need to use another package manager. If you still use Python2, the package is also available (it is called `python-psutil`).
 
+The playbook uses the *pids* module, this is part of the *community.general* collection. If you installed *ansible-core* only, you have to install this collection additionally.
+
+```bash
+ansible-galaxy collection install community.general
+```
+
 ## Task 1
 
 The playbook is almost complete, it misses the task to deploy the *index.html.j2*-Template from the `templates` folder.  
@@ -48,7 +54,7 @@ The webserver should be stopped when you run the playbook like this:
 ansible-playbook python-webserver-with-template.yml -t kill
 ```
 
-The task to stop the webserver already exists, but it need to be adjusted with the tag. As the task uses a variable, you may need to modify more than one task...
+The task to stop the webserver already exists, but it needs to be adjusted with the tag. As the task uses a variable, you may need to modify more than one task...
 
 ## Task 4 (Bonus)
 

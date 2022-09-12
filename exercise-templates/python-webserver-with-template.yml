@@ -9,7 +9,7 @@
       - Jonathan
   tasks:
     # pids-module needs psutil Python module, can be installed via package manager: python3-psutil
-    # Do this manually, so you don't have to run the playbook with become. Otherwise, leave this task
+    # Install the package manually before executing the playbook!
     - name: Get process ID of Python HTTP server
       community.general.pids:
         pattern: .*http\.server.*
@@ -26,6 +26,9 @@
         cmd: python3 -m http.server 8080 --directory /tmp &> /dev/null
         creates: /proc/{{ python_webserver_pid.pids | join(' ') }}/uid_map
 
+    # The first condition only executes the command when a process ID is found (from first task)
+    # The second condition is necessary to only execute the task when the tag is given, otherwise
+    # the task is always executed (killing the webserver) when a webserver is running...
     - name: Stop Python webserver
       ansible.builtin.command:
         cmd: kill {{ python_webserver_pid.pids | join(' ') }}
