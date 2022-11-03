@@ -1,0 +1,4 @@
+---
+
+mkdocs_project_git_url: https://github.com/TimGrt/Ansible-Best-Practices.git
+mkdocs_project_directory: "{{ ansible_user_dir }}/{{ mkdocs_project_git_url | basename | regex_replace('^(.*).git$', '\\1') }}"

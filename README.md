@@ -21,3 +21,15 @@ cd exercise-templates
 ```
 
 Observe the `Readme.md` in that folder.
+
+Observe the `README.md` in that folder.
+
+## AAP Usage 101
+
+Move to the folder `exercise-aap-usage-101`:
+
+```bash
+cd exercise-aap-usage-101
+```
+
+Observe the `README.md` in that folder.

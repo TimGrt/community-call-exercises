@@ -1,0 +1,4 @@
+---
+
+- ansible.builtin.import_tasks: installation.yml  # noqa name
+- ansible.builtin.import_tasks: best-practices-project.yml  # noqa name
