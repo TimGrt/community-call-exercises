@@ -127,6 +127,39 @@ We need *become* permissions, enable these for the job template.
 </details>
 </p>
 
-Errors fixed? Look at the last task and input the IP address into your browser.
+Errors fixed? Your job template should run successfully, look at the last task and input the IP address into your browser.
 
 **Let the discussion begin!**
+
+## Bonus: Deploy the MkDocs project to one more node
+
+Currently, we deployed the Webserver running the MkDocs project to `node3` (we called the host `mkdocs-host`). Add one more node (use `node2` of the *Workshop inventory*) to the *Community Call Inventory*, remember to provide the correct IP address with the `ansible_host` variable. Rename the existing host to `mkdocs-host1` and name the newly added host `mkdocs-host2`.  
+
+Log in as your personal user again and run the template one more time.  
+You should see the automated installation and configuration for two hosts (the first node with no changes). If you don't, take a look at the explanation below.   
+Awesome, now we could configure a loadbalancer, even if one of the webservers would fail, we could still access our content. But, let's save this task for another time... 
+
+The last task still only shows once, do you know why?
+
+<p>
+<details>
+<summary><b>Solution and explanation.</b></summary>
+ 
+The last task is shown only once because the task uses the `run_once` parameter, take a look at the `mkdocs-deployment.yml` playbook in the Git repository. The `run_once` parameter always runs on the first item in the *group*-list, the same as to use `mkdocs[0]` (every group is a list of hosts, the list is ordered).  
+Does this make sense in our use case? Nope, we will never see the IP of the second host in the debug task...
+
+If you don't see the automation happening on two nodes, make sure you activated the second node in your inventory. Did you add the host to the `mkdocs` group?  
+If you did not create the group but instead renamed the host to `mkdocs` (this would work, the target only expects this string, if this string represents a node or a group isn't important for Ansible), your are in a tough spot right now. You would have to add the host to the play, e.g. like this:
+
+```yaml
+- name: Deploy Ansible Best Practices Guide with MkDocs
+  hosts: mkdocs-host1,mkdocs-host2
+  roles:
+...    
+```
+
+This is not very useful, you would have the change your playbook every time a new host is added (renamed, deleted).  
+It is Best-Practice to always target a group, even if your group only has one node in it. This way you would only have to change the inventory, but the *logic*/playbook can stay untouched.
+
+</details>
+</p>
