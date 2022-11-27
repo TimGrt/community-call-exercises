@@ -1,0 +1,51 @@
+#Playbook to deploy Best-Practice container
+- hosts: localhost
+  connection: local
+  vars:
+    mkdocs_project_git_url: git@github.com:TimGrt/Ansible-Best-Practices.git
+    mkdocs_project_destination_directory: "{{ ansible_user_dir }}/{{ mkdocs_project_git_url | basename | regex_replace('^(.*).git$', '\\1') }}"
+    docker_image_name: "local/{{ ansible_env.USER }}/ansible-best-practices"
+    containerPort: 8080
+  tasks:
+    - name: Clone Best-Practice project repository
+      command: 
+        cmd: git clone "{{ mkdocs_project_git_url }}" 
+        chdir: "{{ ansible_user_dir }}"
+      ignore_errors: true
+
+    - name: ensure Python dependencies are installed
+      pip:
+        name:
+        - docker
+        - requests
+        state: latest
+
+    - name: Build Docker image from cloned repository
+      community.docker.docker_image:
+        name: "{{ docker_image_name }}"
+        build: 
+          path: "{{ mkdocs_project_destination_directory }}"
+        source: build
+
+    - name: Create container from image
+      community.docker.docker_container:
+        name: ansible-best-practices
+        image: "{{ docker_image_name }}"
+        published_ports :
+        - "{{ containerPort}}:80/tcp"
+        validate_certs: no
+ 
+    - name: Get infos on container 
+      docker_container_info:
+        name: ansible-best-practices
+      register: container_info
+
+    - name: Get infos on container
+      shell: docker inspect ansible-best-practices | grep -o "running"
+      failed_when: false
+      register: container_info
+
+    - debug: msg="Go to >> http://localhost:{{ containerPort }} << to view your deployment."
+      when: container_info.stdout == 'running'
+
+
