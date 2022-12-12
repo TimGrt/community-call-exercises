@@ -9,6 +9,7 @@ If you want to run the playbook, you need:
 
 * Docker Container runtime
 * Ansible (obviously)
+* Python Package Manager *pip3*
 
 The following Python packages:
 
@@ -40,7 +41,7 @@ There are some obvious ones and multiple ones which are hard to spot without hel
 <details>
 <summary><b>Do you want to know an aproximate number of bad practises to look out for? You will be surprised...</b></summary>
  
-> At least **28 bad practices** can be found!
+> At least **25 bad practices** can be found!
 
 </details>
 </p>
