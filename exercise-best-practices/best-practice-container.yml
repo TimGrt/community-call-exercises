@@ -34,11 +34,6 @@
         published_ports :
         - "{{ containerPort}}:80/tcp"
         validate_certs: no
- 
-    - name: Get infos on container 
-      docker_container_info:
-        name: ansible-best-practices
-      register: container_info
 
     - name: Get infos on container
       shell: docker inspect ansible-best-practices | grep -o "running"
