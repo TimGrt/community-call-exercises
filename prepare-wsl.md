@@ -4,7 +4,7 @@ To have a test environment for doing all exercises during the Community Call you
 
 This guide shows you the basic steps to configure the *Ubuntu 22.04.02 LTS* WSL environment.
 
-<img src=".assets/microsoft-store-wsl-ubuntu2204.png" width=30%>
+<img src=".assets/microsoft-store-wsl-ubuntu2204.png" width=60%>
 
 ## Configuration
 
