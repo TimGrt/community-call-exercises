@@ -8,25 +8,25 @@ You will login as the `admin` user first, but we will also create a local user, 
 
 Go to *Users* and click the *Add* button:
 
-| Parameter | Value |
-| --------- | ----- |
-| **Username**  | *\<Your CC username>* |
-| **Password** | *\<Up to you, choose something easy>* |
-| **User Type** | *Normal User* |
-| **Organization** | *Default* |
+| Parameter        | Value                                 |
+| ---------------- | ------------------------------------- |
+| **Username**     | *\<Your CC username>*                 |
+| **Password**     | *\<Up to you, choose something easy>* |
+| **User Type**    | *Normal User*                         |
+| **Organization** | *Default*                             |
 
 ## Create project
 
 Create a new *project* with the following parameters:
 
-| Parameter | Value |
-| --------- | ----- |
-| **Name**  | *Community Call Project* |
-| **Organization** | *Default* |
-| **Source Control Type** | *Git* |
-| **Source Control URL** | https://github.com/TimGrt/community-call-exercises.git |
-| **Options > Clean** | &#9745; |
-| **Options > Update Revision on Launch** | &#9745; |
+| Parameter                               | Value                                                                                                            |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **Name**                                | *Community Call Project*                                                                                         |
+| **Organization**                        | *Default*                                                                                                        |
+| **Source Control Type**                 | *Git*                                                                                                            |
+| **Source Control URL**                  | [https://github.com/TimGrt/community-call-exercises.git](https://github.com/TimGrt/community-call-exercises.git) |
+| **Options > Clean**                     | &#9745;                                                                                                          |
+| **Options > Update Revision on Launch** | &#9745;                                                                                                          |
 
 ![Create Project](.pictures/AAP-Create-Project.png)
 
@@ -40,16 +40,16 @@ Add Access permissions to your project for your User, go to your project and sel
 
 Create a new *inventory* with the following parameters:
 
-| Parameter | Value |
-| --------- | ----- |
-| **Name**  | *Community Call Inventory* |
-| **Organization** | *Default* |
+| Parameter        | Value                      |
+| ---------------- | -------------------------- |
+| **Name**         | *Community Call Inventory* |
+| **Organization** | *Default*                  |
 
 Add a new host to your inventory with the following parameters:
 
-| Parameter | Value |
-| --------- | ----- |
-| **Name**  | *mkdocs-host* |
+| Parameter     | Value                                                          |
+| ------------- | -------------------------------------------------------------- |
+| **Name**      | *mkdocs-host*                                                  |
 | **Variables** | *ansible_host: \<IP address of node3 from Workshop inventory>* |
 
 We will use the *node3* from the *Workshop inventory*, go to *Inventories > Workshop Inventory > Hosts > node3* and copy the variables section. Copy the YAML variable to *Inventories > Community Call Inventory > Hosts > mkdocs-host*.
@@ -66,14 +66,14 @@ Add Access permissions to the newly created inventory for your user. Your user s
 
 Create a new *job template* with the following parameters:
 
-| Parameter | Value |
-| --------- | ----- |
-| **Name**  | *Community Call Playbook Run* |
-| **Job Type** | *Run* |
-| **Inventory** | *Community Call Inventory* |
-| **Project** | *Communtiy Call Project* |
-| **Playbook** | *exercise-aap-usage-101/mkdocs-deployment.yml* |
-| **Credentials** | *Machine Credentials > Workshop Credentials* |
+| Parameter       | Value                                          |
+| --------------- | ---------------------------------------------- |
+| **Name**        | *Community Call Playbook Run*                  |
+| **Job Type**    | *Run*                                          |
+| **Inventory**   | *Community Call Inventory*                     |
+| **Project**     | *Communtiy Call Project*                       |
+| **Playbook**    | *exercise-aap-usage-101/mkdocs-deployment.yml* |
+| **Credentials** | *Machine Credentials > Workshop Credentials*   |
 
 ![Job Template](.pictures/AAP-Template.png)
 
@@ -82,7 +82,7 @@ Set permissions for the job template, your user should be able to **Execute** th
 ![Job Template Access](.pictures/AAP-Template-Access.png)
 
 All set, now the fun part begins.
- 
+
 ## Log out and log in as you personal user
 
 > If you are the `admin` user, log out and log in as your previously created user!
@@ -98,7 +98,7 @@ The playbook ran "successful", but nothing really happened, the play got skipped
 <p>
 <details>
 <summary><b>Help wanted?</b></summary>
- 
+
 Remember that every play always targets a group of hosts. Do we even defined a group in our inventory?
 
 </details>
@@ -107,7 +107,7 @@ Remember that every play always targets a group of hosts. Do we even defined a g
 <p>
 <details>
 <summary><b>More help wanted?</b></summary>
- 
+
 The playbook targets the group `mkdocs`, create this group in your inventory (*Community Call Inventory*) and add `mkdocs-host` to that group. You will need to login as the *admin* user again, because you only have *read* permissions on the inventory.  
 Log in as your personal user again and run the job template again.
 
@@ -121,7 +121,7 @@ Still an error, installing stuff fails (*This command has to be run under the ro
 <p>
 <details>
 <summary><b>Help wanted?</b></summary>
- 
+
 We need *become* permissions, enable these for the job template.
 
 </details>
@@ -136,15 +136,15 @@ Errors fixed? Your job template should run successfully, look at the last task a
 Currently, we deployed the Webserver running the MkDocs project to `node3` (we called the host `mkdocs-host`). Add one more node (use `node2` of the *Workshop inventory*) to the *Community Call Inventory*, remember to provide the correct IP address with the `ansible_host` variable. Rename the existing host to `mkdocs-host1` and name the newly added host `mkdocs-host2`.  
 
 Log in as your personal user again and run the template one more time.  
-You should see the automated installation and configuration for two hosts (the first node with no changes). If you don't, take a look at the explanation below.   
-Awesome, now we could configure a loadbalancer, even if one of the webservers would fail, we could still access our content. But, let's save this task for another time... 
+You should see the automated installation and configuration for two hosts (the first node with no changes). If you don't, take a look at the explanation below.
+Awesome, now we could configure a loadbalancer, even if one of the webservers would fail, we could still access our content. But, let's save this task for another time...
 
 The last task still only shows once, do you know why?
 
 <p>
 <details>
 <summary><b>Solution and explanation.</b></summary>
- 
+
 The last task is shown only once because the task uses the `run_once` parameter, take a look at the `mkdocs-deployment.yml` playbook in the Git repository. The `run_once` parameter always runs on the first item in the *group*-list, the same as to use `mkdocs[0]` (every group is a list of hosts, the list is ordered).  
 Does this make sense in our use case? Nope, we will never see the IP of the second host in the debug task...
 

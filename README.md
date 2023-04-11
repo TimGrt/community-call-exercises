@@ -33,10 +33,21 @@ cd exercise-aap-usage-101
 Observe the `README.md` in that folder.
 
 ## Best Practices
+
 Move to the folder `exercise-best-practices`:
 
 ```bash
 cd exercise-best-practices
+```
+
+Observe the `README.md` in that folder.
+
+## Custom facts and plugins
+
+Move to the folder `exercise-facts-and-filter-plugin`:
+
+```bash
+cd exercise-facts-and-filter-plugin
 ```
 
 Observe the `README.md` in that folder.

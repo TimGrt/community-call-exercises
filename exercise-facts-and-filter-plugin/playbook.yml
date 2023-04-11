@@ -1,0 +1,41 @@
+---
+
+- name: Community Call Dojo - Custom facts and custom filter plugin
+  hosts: test
+  vars:
+    host_list:
+      - node1
+      - node4
+      - node3
+      - node2
+  tasks:
+    - name: Output host identifier from custom fact
+      ansible.builtin.debug:
+        msg: "{{ ansible_facts['ansible_local'] }}"
+
+    - name: Install dependency for example filter plugin
+      ansible.builtin.pip:
+        name: netaddr
+        extra_args: --user
+
+    - name: Test if example filter plugin from custom collection can be used
+      ansible.builtin.debug:
+        msg: "{{ ip_list | computacenter.utils.sort_ip }}"
+      vars:
+        ip_list:
+          - 10.0.1.23
+          - 10.0.2.19
+          - 10.0.1.15
+
+    # This task sets a variable which you can use in the next two tasks after you created your filter plugins
+    - name: Create variable with value containing the stage fact
+      ansible.builtin.set_fact:
+        stage_fact: "{{ ansible_facts['ansible_local']['identifier']['environment']['stage'] }}"
+
+    - name: Add stage fact as domain with custom filter plugin and output result  # noqa jinja[invalid]
+      ansible.builtin.debug:
+        msg: "{{ host_list | computacenter.utils.add_stage_as_domain(stage_fact) }}"
+
+    - name: Sort hosts with custom filter plugin and output result
+      ansible.builtin.debug:
+        msg: "{{ host_list | computacenter.utils.add_stage_as_domain(stage_fact) | computacenter.utils.sort_hosts }}"  # noqa jinja[invalid]
