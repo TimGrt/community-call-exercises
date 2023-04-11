@@ -6,7 +6,7 @@
     - webserver
     - mkdocs-project
   post_tasks:
-    - name: Output info
+    - name: Output info  # noqa run-once[task]
       ansible.builtin.debug:
         msg: "Go to >> {{ ansible_host }} << to view the MkDocs deployment."
       run_once: true

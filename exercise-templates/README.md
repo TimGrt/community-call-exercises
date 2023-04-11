@@ -81,6 +81,7 @@ If you want to stop the webserver manually, find out the process ID and kill the
 ```bash
 ps aux | grep http.server
 ```
+
 ```bash
 kill <process ID>
 ```

@@ -4,4 +4,4 @@
   ansible.builtin.template:
     src: httpd.conf.j2
     dest: /etc/httpd/conf/httpd.conf
-    mode: 0644
+    mode: "0644"

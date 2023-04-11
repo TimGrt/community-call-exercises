@@ -17,7 +17,7 @@
 
     # Use appropriate module to deploy template from templates-folder. Set the correct destination, look at
     # the last task were the webserver is started. The webserver expects a file named 'index.html' at the webserver root folder.
-    - name: Deploy index.html template
+    - name: Deploy index.html template  # noqa syntax-check[specific]
       # ADD YOUR CODE HERE...
 
     # Don't change this task unless you have to use another port for your webserver

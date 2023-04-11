@@ -28,7 +28,7 @@ ok: [localhost] => {
 
 Take a look at the [Ansible Best Practice Guide](https://timgrt.github.io/Ansible-Best-Practices/development/extending/#static-facts) on how to create a custom static fact.
 
-> Note: The file-extension must be `.fact`! 
+> **Note:** The file-extension must be `.fact`!
 
 To test your custom fact, either run the playbook or use an *ad-hoc* command. Facts are gathered by the `ansible.builtin.setup` module, you can provide a *filter* to the module, if you want to output only specific facts.
 
