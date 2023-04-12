@@ -110,8 +110,6 @@ map(lambda orig_item: orig_item + '.' + identifier, input_list)
 
 You may need to adjust the variables, if you used other names.
 
-Adjust the fifth task in the playbook, add the missing `msg` parameter of the *debug* module.
-
 Running the playbook should result in the following output:
 
 ```bash
@@ -168,7 +166,7 @@ In your playbook, chain both filter plugins together, like this:
         msg: "{{ host_list | filter1 | filter2 }}"
 ```
 
-Adjust the sixth task, the result should look like this:
+The result should look like this:
 
 ```bash
 TASK [Sort hosts with custom filter plugin and output result] *************************************
