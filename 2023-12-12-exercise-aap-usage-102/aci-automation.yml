@@ -1,5 +1,5 @@
 ---
-- name: ACI automation with Ansible for Community Call
+- name: ACI automation with Ansible for community-call-ap
   hosts: apic
   gather_facts: false
   module_defaults:
@@ -36,7 +36,7 @@
     - name: Add a new Application Profile
       cisco.aci.aci_ap:
         tenant: "{{ tenant_name }}"
-        ap: Community Call
+        ap: community-call-ap
         description: Application Profile for CC Communtiy Call
         monitoring_policy: default
         state: present
@@ -44,7 +44,7 @@
     - name: Add all Endpoint groups
       cisco.aci.aci_epg:
         tenant: "{{ tenant_name }}"
-        ap: Community Call
+        ap: community-call-ap
         epg: "{{ item.epg_name }}"
         description: "{{ item.epg_description }}"
         monitoring_policy: default
