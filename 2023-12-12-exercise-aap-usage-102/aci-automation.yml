@@ -2,13 +2,13 @@
 - name: ACI automation with Ansible for Community Call
   hosts: apic
   gather_facts: false
-  module_defaults:
-    group/cisco.aci.all:
-      host: "{{ apic_api | default(omit) }}"
-      username: "{{ apic_user | default(omit) }}"
-      password: "{{ apic_password | default(omit) }}"
-      validate_certs: "{{ apic_certificate_validation | default(omit) }}"
-      use_ssl: "{{ apic_ssl_usage | default(omit) }}"
+  # module_defaults:
+  #   group/cisco.aci.all:
+  #     host: "{{ apic_api | default(omit) }}"
+  #     username: "{{ apic_user | default(omit) }}"
+  #     password: "{{ apic_password | default(omit) }}"
+  #     validate_certs: "{{ apic_certificate_validation | default(omit) }}"
+  #     use_ssl: "{{ apic_ssl_usage | default(omit) }}"
   tasks:
     - name: Assert required variables
       ansible.builtin.assert:
