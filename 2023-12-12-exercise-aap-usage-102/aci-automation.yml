@@ -27,7 +27,7 @@
       ansible.builtin.debug:
         msg: "{{ apic_system_info }}"
         verbosity: 1
-    - ansible.builtin.fail: # noqa name[missing]
+
     - name: Create tenant
       cisco.aci.aci_tenant:
         name: "{{ tenant_name }}"
