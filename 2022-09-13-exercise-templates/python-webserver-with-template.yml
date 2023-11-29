@@ -29,7 +29,7 @@
     # The first condition only executes the command when a process ID is found (from first task)
     # The second condition is necessary to only execute the task when the tag is given, otherwise
     # the task is always executed (killing the webserver) when a webserver is running...
-    - name: Stop Python webserver
+    - name: Stop Python webserver # noqa no-changed-when
       ansible.builtin.command:
         cmd: kill {{ python_webserver_pid.pids | join(' ') }}
       when:

@@ -113,7 +113,7 @@ You may need to adjust the variables, if you used other names.
 Running the playbook should result in the following output:
 
 ```bash
-$ ansible-playbook -i inventory.ini playbook.yml 
+$ ansible-playbook -i inventory.ini playbook.yml
 
 PLAY [Community Call Dojo - Custom facts and custom filter plugin] *************************************************
 
@@ -146,7 +146,7 @@ ok: [localhost] => {
 ...
 
 PLAY RECAP *********************************************************************************************************
-localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  
 
 ```
 

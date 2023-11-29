@@ -8,8 +8,8 @@
     containerPort: 8080
   tasks:
     - name: Clone Best-Practice project repository
-      command: 
-        cmd: git clone "{{ mkdocs_project_git_url }}" 
+      command:
+        cmd: git clone "{{ mkdocs_project_git_url }}"
         chdir: "{{ ansible_user_dir }}"
       ignore_errors: true
 
@@ -23,7 +23,7 @@
     - name: Build Docker image from cloned repository
       community.docker.docker_image:
         name: "{{ docker_image_name }}"
-        build: 
+        build:
           path: "{{ mkdocs_project_destination_directory }}"
         source: build
 

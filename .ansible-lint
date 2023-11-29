@@ -6,4 +6,4 @@ skip_list:
 
 exclude_paths:
   - .github/
-  - exercise-best-practices/  # This exercise contains loads of bad practices, not linting this in CI
+  - 2022-12-13-exercise-best-practices/  # This exercise contains loads of bad practices, not linting this in CI
