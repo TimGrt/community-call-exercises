@@ -37,7 +37,7 @@
       cisco.aci.aci_ap:
         tenant: "{{ tenant_name }}"
         ap: community-call-ap
-        description: Application Profile for CC Communtiy Call
+        description: Application Profile for CC Community Call
         monitoring_policy: default
         state: present
 
