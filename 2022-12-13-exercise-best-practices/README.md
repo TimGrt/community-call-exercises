@@ -25,13 +25,14 @@ Installing Docker is up to you, the dependencies can be installed with the provi
 ```bash
 pip3 install -r requirements.txt
 ```
+
 ```bash
 ansible-galaxy collection install -r requirements.yml
 ```
 
 ## Task 1
 
-Inspect the playbook `best-practice-container.yml`. 
+Inspect the playbook `best-practice-container.yml`.
 
 **Can you spot all bad practices/improvements?**
 
@@ -40,7 +41,7 @@ There are some obvious ones and multiple ones which are hard to spot without hel
 <p>
 <details>
 <summary><b>Do you want to know an aproximate number of bad practises to look out for? You will be surprised...</b></summary>
- 
+
 > At least **25 bad practices** can be found!
 
 </details>
@@ -57,7 +58,7 @@ The Guide shows loads of Good and Best Practices for your Ansible projects.
 <p>
 <details>
 <summary><b>Help wanted?</b></summary>
- 
+
 Install `ansible-lint` and run it.
 
 ```bash
@@ -72,4 +73,3 @@ $ ansible-lint best-practice-container.yml
 
 </details>
 </p>
-

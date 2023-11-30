@@ -155,7 +155,7 @@ If you did not create the group but instead renamed the host to `mkdocs` (this w
 - name: Deploy Ansible Best Practices Guide with MkDocs
   hosts: mkdocs-host1,mkdocs-host2
   roles:
-...    
+...  
 ```
 
 This is not very useful, you would have the change your playbook every time a new host is added (renamed, deleted).  

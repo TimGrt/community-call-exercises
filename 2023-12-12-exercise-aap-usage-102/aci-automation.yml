@@ -1,0 +1,60 @@
+---
+- name: ACI automation with Ansible for community-call-ap
+  hosts: apic
+  gather_facts: false
+  module_defaults:
+    group/cisco.aci.all:
+      host: "{{ apic_api | default(omit) }}"
+      username: "{{ apic_user | default(omit) }}"
+      password: "{{ apic_password | default(omit) }}"
+      validate_certs: "{{ apic_certificate_validation | default(omit) }}"
+      use_ssl: "{{ apic_ssl_usage | default(omit) }}"
+  tasks:
+    - name: Assert required variables
+      ansible.builtin.assert:
+        that:
+          - tenant_name is defined
+          - tenant_name | length > 0
+        quiet: true
+        fail_msg: "Required variables are not defined or invalid!"
+
+    - name: Query infos about APIC
+      cisco.aci.aci_system:
+        state: query
+      register: apic_system_info
+
+    - name: Output infos about APIC when running with -v or more
+      ansible.builtin.debug:
+        msg: "{{ apic_system_info }}"
+        verbosity: 1
+
+    - name: Create tenant
+      cisco.aci.aci_tenant:
+        name: "{{ tenant_name }}"
+        state: present
+
+    - name: Add a new Application Profile
+      cisco.aci.aci_ap:
+        tenant: "{{ tenant_name }}"
+        ap: community-call-ap
+        description: Application Profile for CC Community Call
+        monitoring_policy: default
+        state: present
+
+    - name: Add all Endpoint groups
+      cisco.aci.aci_epg:
+        tenant: "{{ tenant_name }}"
+        ap: community-call-ap
+        epg: "{{ item.epg_name }}"
+        description: "{{ item.epg_description }}"
+        monitoring_policy: default
+        state: present
+      loop:
+        - epg_name: web
+          epg_description: Web EPG
+        - epg_name: app
+          epg_description: app EPG
+        - epg_name: db
+          epg_description: DB EPG
+      loop_control:
+        label: "{{ item.epg_name }}"

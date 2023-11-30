@@ -8,7 +8,7 @@ This guide shows you the basic steps to configure the *Ubuntu 22.04.02 LTS* WSL 
 
 ## Configuration
 
-Execute the following steps. 
+Execute the following steps.
 
 > Disable the VPN when running WSL!
 
