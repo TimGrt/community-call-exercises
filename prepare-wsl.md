@@ -93,6 +93,12 @@ Install Ansible (Core) via *pip3*, remember to put `--user`, otherwise installat
 pip3 install ansible-core --user
 ```
 
+Ansible is installed to `~/.local/bin`, this path is not yet added to the PATH environment variable. Run the following command:
+
+```bash
+source ~/.profile
+```
+
 ### SSH Config for CCloud Gitlab
 
 To be able to clone projects from the CCloud Gitlab, you need to adjust the *ssh_config* because the Gitlab instance is using a non-standard SSH port.
