@@ -57,7 +57,13 @@ generateResolvConf = false
 systemd = true
 ```
 
-After writing the changes, close the WSL window. Open **Powershell** and restart WSL:
+Run the following command, which installs a necessary package:
+
+```console
+sudo apt install dbus-user-session
+```
+
+After doing the changes above, close the WSL window. Open **Powershell** and restart WSL:
 
 ```powershell
 wsl.exe --shutdown
