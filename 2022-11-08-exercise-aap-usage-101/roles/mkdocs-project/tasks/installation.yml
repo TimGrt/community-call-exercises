@@ -1,7 +1,7 @@
 ---
 
 - name: Install Python package manager and other dependencies
-  ansible.builtin.yum:
+  ansible.builtin.package:
     name:
       - python3-pip
       - git
