@@ -1,0 +1,19 @@
+---
+version: 3
+
+images:
+  base_image:
+    name: docker.io/redhat/ubi9:latest
+
+additional_build_steps:
+  prepend_final:
+    - RUN update-alternatives --install /usr/bin/python3 python /usr/bin/python3.12 20
+
+dependencies:
+  ansible_core:
+    package_pip: ansible-core
+  ansible_runner:
+    package_pip: ansible-runner
+  python_interpreter:
+    package_system: "python312"
+    python_path: "/usr/bin/python3.12"

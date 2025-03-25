@@ -1,0 +1,32 @@
+---
+
+- name: Automate Cisco ACI
+  hosts: aci
+  gather_facts: false
+  vars:
+    tenant_name: demo-tenant-tg
+  pre_tasks:
+    - name: Ensure required ACI connection environment variables are set
+      ansible.builtin.assert:
+        that:
+          - lookup('env', 'ACI_HOST') | length > 0
+          - lookup('env', 'ACI_USERNAME') | length > 0
+          - lookup('env', 'ACI_PASSWORD') | length > 0
+          - lookup('env', 'ACI_VALIDATE_CERTS') | length > 0
+        quiet: true
+        fail_msg: "Required ACI connection variables not set! Export the environment variables."
+  tasks:
+    - name: Create tenant
+      cisco.aci.aci_tenant:
+        name: "{{ tenant_name }}"
+        state: present
+
+    - name: Get all contracts of common tenant
+      cisco.aci.aci_contract:
+        tenant: "common"
+        state: query
+      register: common_contracts
+
+    - name: Output list of common contracts
+      ansible.builtin.debug:
+        msg: "{{ common_contracts | community.general.json_query('current[0].fvTenant.children[*].vzBrCP.attributes.name') }}"
