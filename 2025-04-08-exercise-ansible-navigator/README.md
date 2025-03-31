@@ -4,7 +4,7 @@ This exercise show the usage of the `ansible-navigator` utility. You will run Pl
 
 ## Install Navigator
 
-Installing the `ansible-navigator` is done via the Python package manager. If you want to (or have to) use a *Python virtual environment* create it with this command:
+Installing the `ansible-navigator` is done via the Python package manager. If you want to, (or have to) use a *Python virtual environment*, create it with this command:
 
 ```console
 python3 -m venv community-call-ve
@@ -90,7 +90,7 @@ Let's take a look at what we just built, we can inspect the image with the Navig
 ansible-navigator -m interactive
 ```
 
-In the TUI, enter `:image` and press *enter*.  
+In the TUI, enter `:images` and press *enter*.  
 After the Navigator collected all images (it will check if the locally present images are EEs or not), press the number of the desired EE image (the currently used one is highlighted in purple, all other EEs in green), for numbers greater than 9, use `:<number>` and press *enter*.  
 Press `2` to inspect the installed Ansible version and all collections. You'll see some additional collections, these are Collections requirements of your Collections.  
 Press `ESC` to move back one level and press `3` to inspect all installed Python packages.  
@@ -118,7 +118,7 @@ A script is prepared to export the required variables for ACI connection, use th
 . export-aci-credentials.sh
 ```
 
-Ensure the environment are exported correctly:
+Ensure the environment variables are exported correctly:
 
 ```console
 env | grep ACI
@@ -270,7 +270,7 @@ Enable the EE usage again and run the playbook again. You'll see (most likely) a
 
 ## Replay playbook runs
 
-Oh, we cleared the terminal in the last step, now I can't see my playbook runs anymore which we did in the beginning. What was the error again with what the playbook failed earlier?  
+Oh, we cleared the terminal in the last step, now we can't see the playbook runs anymore which we did in the beginning. What was the error again with what the playbook failed earlier?  
 
 Let's make use the of the gathered logs and *playbook artifacts* which are stored by the Navigator automatically (we only adjusted the path where they are stored).  
 
