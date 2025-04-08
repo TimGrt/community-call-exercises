@@ -66,7 +66,7 @@ dependencies:
   python_interpreter:
     package_system: "python312"
     python_path: "/usr/bin/python3.12"
-    
+
   galaxy:
     collections:
       - cisco.aci
@@ -211,7 +211,7 @@ dependencies:
   python_interpreter:
     package_system: "python312"
     python_path: "/usr/bin/python3.12"
-    
+
   galaxy:
     collections:
       - cisco.aci
