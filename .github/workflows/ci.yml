@@ -13,8 +13,9 @@ jobs:
     name: Run ansible-lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
       - name: Run ansible-lint
         uses: ansible/ansible-lint@main
-        with:
-          python_dependency_file: requirements.txt
