@@ -1,0 +1,18 @@
+---
+
+- name: Fact gathering playbook for demo purposes
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Gather some specific facts
+      ansible.builtin.setup:
+        gather_subset:
+          - "!all"
+          - "!min"
+          - python_version
+          - distribution
+
+    - name: Output gathered facts
+      ansible.builtin.debug:
+        var: ansible_facts

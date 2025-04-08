@@ -1,3 +1,27 @@
+
 __pycache__/
 *.py[cod]
+
+# Output folder from running ansible-test
+output/
+
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate*
+
+demo-ve/
+ansible-policy/
+
+.ansible/
 .vscode/
+
+# Folders from demo of ARA (2025-03-11-demo-logging-ansible-content)
+ara/
+ve-ara/
+.ara/
+logs/
+
+# Folder from demo/exercise of 2025-04-08-exercise-ansible-navigator
+context/
+community-call-ve/
+*.log

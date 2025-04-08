@@ -1,0 +1,14 @@
+---
+ansible-navigator:
+  execution-environment:
+    enabled: true
+    image: localhost/community-call-ee:latest
+    pull:
+      policy: never
+  logging:
+    level: warning
+    file: logs/ansible-navigator.log
+  mode: stdout
+  playbook-artifact:
+    enable: true
+    save-as: "logs/{playbook_status}-{playbook_name}-{time_stamp}.json"
