@@ -2,7 +2,7 @@
 ansible-navigator:
   execution-environment:
     enabled: true
-    image: localhost/community-call-ee:latest
+    image: community-call-ee:latest
     pull:
       policy: never
   logging:
