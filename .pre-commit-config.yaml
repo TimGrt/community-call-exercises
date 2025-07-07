@@ -15,11 +15,11 @@ repos:
       - id: requirements-txt-fixer
         name: Sort entries in requirements.txt
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.32.1
+    rev: 0.33.2
     hooks:
       - id: check-github-workflows
   - repo: https://github.com/ansible-community/ansible-lint
-    rev: v25.2.1
+    rev: v25.6.1
     hooks:
       - id: ansible-lint
         additional_dependencies:
