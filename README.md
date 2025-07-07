@@ -10,44 +10,11 @@ Clone this repository via HTTPS:
 git clone https://github.com/TimGrt/community-call-exercises.git
 ```
 
-To do the different exercises, note the following:
+To do the different exercises, observe the `README.md` files in the respective exercise folders:
 
-## 13.09.2022 - Jinja2 Templates
-
-Move to the folder `2022-09-13-exercise-templates`:
-
-```bash
-cd 2022-09-13-exercise-templates
-```
-
-Observe the `Readme.md` in that folder.
-
-## 08.11.2022 - AAP Usage 101
-
-Move to the folder `2022-11-08-exercise-aap-usage-101`:
-
-```bash
-cd 2022-11-08-exercise-aap-usage-101
-```
-
-Observe the `README.md` in that folder.
-
-## 13.12.2022 - Best Practices
-
-Move to the folder `2022-12-13-exercise-best-practices`:
-
-```bash
-cd 2022-12-13-exercise-best-practices
-```
-
-Observe the `README.md` in that folder.
-
-## 11.04.2023 - Custom facts and plugins
-
-Move to the folder `2023-04-11-exercise-facts-and-filter-plugin`:
-
-```bash
-cd 2023-04-11-exercise-facts-and-filter-plugin
-```
-
-Observe the `README.md` in that folder.
+* [08.04.2025 - Ansible Navigator](2025-04-08-exercise-ansible-navigator/README.md)
+* [12.12.2023 - AAP Usage 102](2023-12-12-exercise-aap-usage-102/README.md)
+* [11.04.2023 - Custom facts and plugins](2023-04-11-exercise-facts-and-filter-plugin/README.md)
+* [13.12.2022 - Best Practices](2022-12-13-exercise-best-practices/README.md)
+* [08.11.2022 - AAP Usage 101](2022-11-08-exercise-aap-usage-101/README.md)
+* [13.09.2022 - Jinja2 Templates](2022-09-13-exercise-templates/README.md)
